@@ -1,0 +1,7 @@
+modal
+fastapi
+pydantic
+croniter
+python-dateutil
+cryptography
+letta-client
