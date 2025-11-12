@@ -7,6 +7,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/letta/letta-schedules-cli/internal/client"
 	"github.com/letta/letta-schedules-cli/internal/config"
+	"github.com/letta/letta-schedules-cli/internal/parser"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -30,6 +31,12 @@ var recurringCreateCmd = &cobra.Command{
 			return fmt.Errorf("agent-id, message, and cron are required")
 		}
 
+		// Parse natural language to cron expression
+		parsedCron, err := parser.ParseCron(cronString)
+		if err != nil {
+			return fmt.Errorf("failed to parse cron: %w", err)
+		}
+
 		cfg, err := config.Load()
 		if err != nil {
 			return err
@@ -43,7 +50,7 @@ var recurringCreateCmd = &cobra.Command{
 			AgentID:    agentID,
 			Message:    message,
 			Role:       role,
-			CronString: cronString,
+			CronString: parsedCron,
 		})
 		if err != nil {
 			return fmt.Errorf("failed to create schedule: %w", err)
@@ -184,7 +191,7 @@ func init() {
 	recurringCreateCmd.Flags().String("agent-id", "", "Agent ID (required)")
 	recurringCreateCmd.Flags().String("message", "", "Message to send (required)")
 	recurringCreateCmd.Flags().String("role", "user", "Message role (default: user)")
-	recurringCreateCmd.Flags().String("cron", "", "Cron expression (required)")
+	recurringCreateCmd.Flags().String("cron", "", "Schedule pattern (required)\n  Examples: 'every 5 minutes', 'daily at 9am', 'every monday at 3pm', '*/5 * * * *'")
 
 	recurringCmd.AddCommand(recurringListCmd)
 	recurringCmd.AddCommand(recurringGetCmd)

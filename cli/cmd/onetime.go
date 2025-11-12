@@ -7,6 +7,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/letta/letta-schedules-cli/internal/client"
 	"github.com/letta/letta-schedules-cli/internal/config"
+	"github.com/letta/letta-schedules-cli/internal/parser"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -30,6 +31,12 @@ var onetimeCreateCmd = &cobra.Command{
 			return fmt.Errorf("agent-id, message, and execute-at are required")
 		}
 
+		// Parse natural language time to ISO 8601
+		parsedTime, err := parser.ParseTime(executeAt)
+		if err != nil {
+			return fmt.Errorf("failed to parse execute-at: %w", err)
+		}
+
 		cfg, err := config.Load()
 		if err != nil {
 			return err
@@ -43,7 +50,7 @@ var onetimeCreateCmd = &cobra.Command{
 			AgentID:   agentID,
 			Message:   message,
 			Role:      role,
-			ExecuteAt: executeAt,
+			ExecuteAt: parsedTime,
 		})
 		if err != nil {
 			return fmt.Errorf("failed to create schedule: %w", err)
@@ -174,7 +181,7 @@ func init() {
 	onetimeCreateCmd.Flags().String("agent-id", "", "Agent ID (required)")
 	onetimeCreateCmd.Flags().String("message", "", "Message to send (required)")
 	onetimeCreateCmd.Flags().String("role", "user", "Message role (default: user)")
-	onetimeCreateCmd.Flags().String("execute-at", "", "ISO 8601 timestamp (e.g., 2025-11-07T10:00:00Z) (required)")
+	onetimeCreateCmd.Flags().String("execute-at", "", "When to execute (required)\n  Examples: 'in 5 minutes', 'tomorrow at 9am', 'next monday at 3pm', '2025-11-07T10:00:00Z'")
 
 	onetimeCmd.AddCommand(onetimeListCmd)
 	onetimeCmd.AddCommand(onetimeGetCmd)

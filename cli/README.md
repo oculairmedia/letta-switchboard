@@ -76,6 +76,57 @@ letta-schedules recurring create \
 letta-schedules recurring list
 ```
 
+## Natural Language Support
+
+The CLI supports natural language input for both time expressions and cron schedules, making it easy to create schedules without memorizing syntax!
+
+### One-Time Schedules (Timestamps)
+
+```bash
+# Relative time
+--execute-at "in 5 minutes"
+--execute-at "in 2 hours"
+--execute-at "in 3 days"
+
+# Tomorrow
+--execute-at "tomorrow at 9am"
+--execute-at "tomorrow at 14:30"
+
+# Next weekday
+--execute-at "next monday at 3pm"
+--execute-at "next friday at 10:00"
+
+# ISO 8601 (still supported)
+--execute-at "2025-11-12T19:30:00Z"
+```
+
+### Recurring Schedules (Cron Expressions)
+
+```bash
+# Minutes
+--cron "every 5 minutes"
+--cron "every 30 minutes"
+
+# Hourly/Daily
+--cron "every hour"
+--cron "daily at 9am"
+--cron "daily at 14:30"
+
+# Weekdays
+--cron "every monday"
+--cron "every friday at 3pm"
+--cron "every weekday"     # Mon-Fri at 9am
+--cron "every weekend"     # Sat-Sun at 9am
+
+# Weekly/Monthly
+--cron "weekly"            # Every Monday at 9am
+--cron "monthly"           # 1st of month at 9am
+
+# Traditional cron (still supported)
+--cron "*/5 * * * *"       # Every 5 minutes
+--cron "0 9 * * 1-5"       # Weekdays at 9am
+```
+
 ## Usage
 
 ### Configuration Commands
