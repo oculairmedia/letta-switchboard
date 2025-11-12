@@ -69,7 +69,6 @@ func (c *Client) doRequest(method, path string, body interface{}) ([]byte, error
 // Recurring Schedule methods
 
 func (c *Client) CreateRecurringSchedule(schedule RecurringScheduleCreate) (*RecurringSchedule, error) {
-	schedule.APIKey = c.APIKey
 	respBody, err := c.doRequest("POST", "/schedules/recurring", schedule)
 	if err != nil {
 		return nil, err
@@ -119,7 +118,6 @@ func (c *Client) DeleteRecurringSchedule(scheduleID string) error {
 // One-time Schedule methods
 
 func (c *Client) CreateOneTimeSchedule(schedule OneTimeScheduleCreate) (*OneTimeSchedule, error) {
-	schedule.APIKey = c.APIKey
 	respBody, err := c.doRequest("POST", "/schedules/one-time", schedule)
 	if err != nil {
 		return nil, err

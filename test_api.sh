@@ -22,9 +22,9 @@ echo ""
 echo "1. Creating recurring schedule (every 5 minutes)..."
 RECURRING_RESPONSE=$(curl -s -X POST "$BASE_URL/schedules/recurring" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $API_KEY" \
   -d "{
     \"agent_id\": \"$AGENT_ID\",
-    \"api_key\": \"$API_KEY\",
     \"cron\": \"*/5 * * * *\",
     \"message\": \"Test recurring message\",
     \"role\": \"user\"
@@ -39,9 +39,9 @@ echo "2. Creating one-time schedule (2 minutes from now)..."
 EXECUTE_AT=$(python3 -c "from datetime import datetime, timedelta, timezone; print((datetime.now(timezone.utc) + timedelta(minutes=2)).isoformat())")
 ONETIME_RESPONSE=$(curl -s -X POST "$BASE_URL/schedules/one-time" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $API_KEY" \
   -d "{
     \"agent_id\": \"$AGENT_ID\",
-    \"api_key\": \"$API_KEY\",
     \"execute_at\": \"$EXECUTE_AT\",
     \"message\": \"Test one-time message\",
     \"role\": \"user\"

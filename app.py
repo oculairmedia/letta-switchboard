@@ -239,13 +239,15 @@ def find_onetime_schedule_for_user(api_key: str, schedule_id: str) -> tuple[dict
 
 
 @web_app.post("/schedules/recurring")
-async def create_recurring_schedule(schedule: RecurringScheduleCreate):
-    if not validate_api_key(schedule.api_key):
+async def create_recurring_schedule(schedule: RecurringScheduleCreate, credentials: HTTPAuthorizationCredentials = Security(security)):
+    api_key = credentials.credentials
+    if not validate_api_key(api_key):
         raise HTTPException(status_code=401, detail="Invalid Letta API key")
     
-    schedule_obj = RecurringSchedule(**schedule.model_dump())
+    # Inject api_key from Authorization header
+    schedule_obj = RecurringSchedule(api_key=api_key, **schedule.model_dump())
     schedule_dict = schedule_obj.model_dump(mode='json')
-    file_path = get_recurring_schedule_path(schedule.api_key, schedule_obj.id)
+    file_path = get_recurring_schedule_path(api_key, schedule_obj.id)
     save_schedule(file_path, schedule_dict)
     response_dict = schedule_dict.copy()
     response_dict.pop("api_key", None)
@@ -253,13 +255,15 @@ async def create_recurring_schedule(schedule: RecurringScheduleCreate):
 
 
 @web_app.post("/schedules/one-time")
-async def create_onetime_schedule(schedule: OneTimeScheduleCreate):
-    if not validate_api_key(schedule.api_key):
+async def create_onetime_schedule(schedule: OneTimeScheduleCreate, credentials: HTTPAuthorizationCredentials = Security(security)):
+    api_key = credentials.credentials
+    if not validate_api_key(api_key):
         raise HTTPException(status_code=401, detail="Invalid Letta API key")
     
-    schedule_obj = OneTimeSchedule(**schedule.model_dump())
+    # Inject api_key from Authorization header
+    schedule_obj = OneTimeSchedule(api_key=api_key, **schedule.model_dump())
     schedule_dict = schedule_obj.model_dump(mode='json')
-    file_path = get_onetime_schedule_path(schedule.api_key, schedule.execute_at, schedule_obj.id)
+    file_path = get_onetime_schedule_path(api_key, schedule.execute_at, schedule_obj.id)
     save_schedule(file_path, schedule_dict)
     response_dict = schedule_dict.copy()
     response_dict.pop("api_key", None)

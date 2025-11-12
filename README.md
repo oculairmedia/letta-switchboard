@@ -21,7 +21,6 @@ curl -X POST https://letta--switchboard-api.modal.run/schedules/one-time \
   -H "Authorization: Bearer YOUR_LETTA_API_KEY" \
   -d '{
     "agent_id": "agent-xxx",
-    "api_key": "YOUR_LETTA_API_KEY",
     "execute_at": "2025-11-12T20:00:00Z",
     "message": "Hello from Switchboard!",
     "role": "user"
@@ -36,7 +35,6 @@ curl -X POST https://letta--switchboard-api.modal.run/schedules/recurring \
   -H "Authorization: Bearer YOUR_LETTA_API_KEY" \
   -d '{
     "agent_id": "agent-xxx",
-    "api_key": "YOUR_LETTA_API_KEY",
     "cron": "0 9 * * 1-5",
     "message": "Daily standup reminder",
     "role": "user"
@@ -59,7 +57,11 @@ curl https://letta--switchboard-api.modal.run/results \
   -H "Authorization: Bearer YOUR_LETTA_API_KEY"
 ```
 
-**Note:** Replace `YOUR_LETTA_API_KEY` with your actual API key and `agent-xxx` with your agent ID.
+**Note:** 
+- Replace `YOUR_LETTA_API_KEY` with your actual Letta API key
+- Replace `agent-xxx` with your agent ID
+- The API key in the Authorization header is used for authentication and storage isolation
+- You don't need to include it in the request body!
 
 **Pro tip:** Use the CLI for natural language scheduling - it's much easier than writing ISO timestamps and cron expressions!
 

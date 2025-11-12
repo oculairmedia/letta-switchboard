@@ -22,15 +22,15 @@ print(f"  API Key: {API_KEY[:20]}..." if API_KEY else "  API Key: Not set")
 
 def test_create_recurring_schedule():
     print("\n=== Testing: Create Recurring Schedule ===")
+    headers = {"Authorization": f"Bearer {API_KEY}"}
     payload = {
         "agent_id": AGENT_ID,
-        "api_key": API_KEY,
         "cron": "*/5 * * * *",
         "message": "This is a test recurring message every 5 minutes",
         "role": "user"
     }
     
-    response = requests.post(f"{BASE_URL}/schedules/recurring", json=payload)
+    response = requests.post(f"{BASE_URL}/schedules/recurring", json=payload, headers=headers)
     print(f"Status: {response.status_code}")
     
     if response.status_code == 201:
@@ -49,15 +49,15 @@ def test_create_onetime_schedule():
     execute_time = datetime.now(timezone.utc) + timedelta(minutes=1)
     execute_time_str = execute_time.isoformat()
     
+    headers = {"Authorization": f"Bearer {API_KEY}"}
     payload = {
         "agent_id": AGENT_ID,
-        "api_key": API_KEY,
         "execute_at": execute_time_str,
         "message": f"This is a test one-time message scheduled for {execute_time_str}",
         "role": "user"
     }
     
-    response = requests.post(f"{BASE_URL}/schedules/one-time", json=payload)
+    response = requests.post(f"{BASE_URL}/schedules/one-time", json=payload, headers=headers)
     print(f"Status: {response.status_code}")
     
     if response.status_code == 201:

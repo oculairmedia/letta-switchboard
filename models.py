@@ -6,7 +6,6 @@ import uuid
 
 class RecurringScheduleCreate(BaseModel):
     agent_id: str
-    api_key: str
     cron: str
     message: str
     role: str = "user"
@@ -25,7 +24,6 @@ class RecurringSchedule(BaseModel):
 
 class OneTimeScheduleCreate(BaseModel):
     agent_id: str
-    api_key: str
     execute_at: str
     message: str
     role: str = "user"

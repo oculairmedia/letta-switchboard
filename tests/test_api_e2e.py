@@ -25,7 +25,6 @@ class TestAuthentication:
         # Create schedule
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "cron": "*/5 * * * *",
             "message": "Test message",
             "role": "user"
@@ -48,7 +47,6 @@ class TestRecurringScheduleCRUD:
         headers = {"Authorization": f"Bearer {valid_letta_api_key}"}
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "cron": "0 9 * * *",
             "message": "Daily morning message",
             "role": "user"
@@ -72,7 +70,6 @@ class TestRecurringScheduleCRUD:
         # Create a schedule
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "cron": "*/10 * * * *",
             "message": "Test",
             "role": "user"
@@ -102,7 +99,6 @@ class TestRecurringScheduleCRUD:
         # Create schedule
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "cron": "0 12 * * *",
             "message": "Noon message",
             "role": "user"
@@ -128,7 +124,6 @@ class TestRecurringScheduleCRUD:
         # Create schedule
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "cron": "0 0 * * *",
             "message": "To be deleted",
             "role": "user"
@@ -160,7 +155,6 @@ class TestOneTimeScheduleCRUD:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": future_time.isoformat(),
             "message": "Future message",
             "role": "user"
@@ -183,7 +177,6 @@ class TestOneTimeScheduleCRUD:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": future_time.isoformat(),
             "message": "Test",
             "role": "user"
@@ -209,7 +202,6 @@ class TestOneTimeScheduleCRUD:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": future_time.isoformat(),
             "message": "To be deleted",
             "role": "user"
@@ -252,7 +244,6 @@ class TestExecution:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": past_time.isoformat(),
             "message": "Should execute immediately",
             "role": "user"
@@ -284,7 +275,6 @@ class TestExecution:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": past_time.isoformat(),
             "message": "Should be deleted after execution",
             "role": "user"
@@ -311,7 +301,6 @@ class TestExecution:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": past_time.isoformat(),
             "message": "Test result persistence",
             "role": "user"
@@ -340,7 +329,6 @@ class TestExecution:
         
         payload = {
             "agent_id": valid_letta_agent_id,
-            "api_key": valid_letta_api_key,
             "execute_at": past_time.isoformat(),
             "message": "Should only execute once",
             "role": "user"

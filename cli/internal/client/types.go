@@ -64,7 +64,6 @@ type RecurringScheduleCreate struct {
 	Message    string `json:"message"`
 	Role       string `json:"role"`
 	CronString string `json:"cron"`
-	APIKey     string `json:"api_key"`
 }
 
 // OneTimeSchedule represents a one-time schedule
@@ -83,7 +82,6 @@ type OneTimeScheduleCreate struct {
 	Message   string `json:"message"`
 	Role      string `json:"role"`
 	ExecuteAt string `json:"execute_at"`
-	APIKey    string `json:"api_key"`
 }
 
 // ExecutionResult represents the result of a schedule execution
