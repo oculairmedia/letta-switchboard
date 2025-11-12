@@ -658,22 +658,47 @@ async def execute_schedule(
     # Execute the message
     result = await execute_letta_message(agent_id, api_key, message, role)
     
-    # Save execution result if successful
-    if result.get("success") and result.get("run_id"):
+    # Always save execution result (success or failure)
+    if result.get("success"):
+        # Successful execution
         save_execution_result(
             api_key=api_key,
             schedule_id=schedule_id,
-            run_id=result["run_id"],
             schedule_type=schedule_type,
             agent_id=agent_id,
             message=message,
+            run_id=result.get("run_id"),
+            status="success"
         )
+    else:
+        # Failed execution - save error result
+        error_msg = result.get("error", "Unknown error")
+        logger.error(f"Execution failed for schedule {schedule_id}: {error_msg}")
+        
+        save_execution_result(
+            api_key=api_key,
+            schedule_id=schedule_id,
+            schedule_type=schedule_type,
+            agent_id=agent_id,
+            message=message,
+            error=error_msg,
+            status="failed"
+        )
+        
+        # Terminate recurring schedules on failure (no retries)
+        if schedule_type == "recurring":
+            try:
+                Path(file_path).unlink()
+                volume.commit()
+                logger.warning(f"Terminated recurring schedule {schedule_id} due to execution failure: {error_msg}")
+            except Exception as e:
+                logger.error(f"Failed to delete failed recurring schedule {schedule_id}: {e}")
     
     return result
 
 
-def save_execution_result(api_key: str, schedule_id: str, run_id: str, schedule_type: str, agent_id: str, message: str):
-    """Save execution result to results folder."""
+def save_execution_result(api_key: str, schedule_id: str, schedule_type: str, agent_id: str, message: str, run_id: str = None, error: str = None, status: str = "success"):
+    """Save execution result to results folder (success or failure)."""
     api_key_hash = get_api_key_hash(api_key)
     result_dir = f"{RESULTS_BASE}/{api_key_hash}"
     Path(result_dir).mkdir(parents=True, exist_ok=True)
@@ -683,11 +708,19 @@ def save_execution_result(api_key: str, schedule_id: str, run_id: str, schedule_
     result_data = {
         "schedule_id": schedule_id,
         "schedule_type": schedule_type,
-        "run_id": run_id,
+        "status": status,
         "agent_id": agent_id,
         "message": message,
         "executed_at": datetime.utcnow().isoformat(),
     }
+    
+    # Add run_id only if present (successful execution)
+    if run_id:
+        result_data["run_id"] = run_id
+    
+    # Add error only if present (failed execution)
+    if error:
+        result_data["error"] = error
     
     encrypted_data = encrypt_json(result_data, get_encryption_key_cached())
     with open(result_file, "wb") as f:
