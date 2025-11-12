@@ -154,7 +154,7 @@ The CLI stores configuration in `~/.letta-schedules/config.yaml`:
 
 ```yaml
 api_key: sk-xxx...
-base_url: https://letta--letta-schedules-api.modal.run
+base_url: https://letta--schedules-api.modal.run
 ```
 
 ## Examples

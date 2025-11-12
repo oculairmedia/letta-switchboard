@@ -45,7 +45,7 @@ func InitConfig() error {
 	viper.AddConfigPath(configDir)
 
 	// Set defaults
-	viper.SetDefault("base_url", "https://letta--letta-schedules-api-dev.modal.run")
+	viper.SetDefault("base_url", "https://letta--schedules-api.modal.run")
 
 	// Read config file if it exists
 	if err := viper.ReadInConfig(); err != nil {

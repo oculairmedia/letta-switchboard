@@ -25,7 +25,7 @@ from dateutil import parser as date_parser
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = modal.App("letta-schedules")
+app = modal.App("schedules")
 
 import os as local_os
 
