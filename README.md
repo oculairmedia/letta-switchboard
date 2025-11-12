@@ -11,7 +11,61 @@ Send messages to your Letta agents immediately or scheduled for later. Supports 
 
 ## Quick Start
 
-### 1. Install the CLI
+### Option 1: Using cURL (No Installation Required)
+
+Send a message right now with just cURL:
+
+```bash
+curl -X POST https://letta--switchboard-api.modal.run/schedules/one-time \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_LETTA_API_KEY" \
+  -d '{
+    "agent_id": "agent-xxx",
+    "api_key": "YOUR_LETTA_API_KEY",
+    "execute_at": "2025-11-12T20:00:00Z",
+    "message": "Hello from Switchboard!",
+    "role": "user"
+  }'
+```
+
+Or create a recurring schedule:
+
+```bash
+curl -X POST https://letta--switchboard-api.modal.run/schedules/recurring \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_LETTA_API_KEY" \
+  -d '{
+    "agent_id": "agent-xxx",
+    "api_key": "YOUR_LETTA_API_KEY",
+    "cron": "0 9 * * 1-5",
+    "message": "Daily standup reminder",
+    "role": "user"
+  }'
+```
+
+**Check your schedules:**
+
+```bash
+# List all one-time schedules
+curl https://letta--switchboard-api.modal.run/schedules/one-time \
+  -H "Authorization: Bearer YOUR_LETTA_API_KEY"
+
+# List all recurring schedules
+curl https://letta--switchboard-api.modal.run/schedules/recurring \
+  -H "Authorization: Bearer YOUR_LETTA_API_KEY"
+
+# View execution results
+curl https://letta--switchboard-api.modal.run/results \
+  -H "Authorization: Bearer YOUR_LETTA_API_KEY"
+```
+
+**Note:** Replace `YOUR_LETTA_API_KEY` with your actual API key and `agent-xxx` with your agent ID.
+
+**Pro tip:** Use the CLI for natural language scheduling - it's much easier than writing ISO timestamps and cron expressions!
+
+### Option 2: Using the CLI (Recommended)
+
+The CLI makes natural language scheduling much easier:
 
 ```bash
 # Download the CLI (or build from source)
@@ -22,7 +76,7 @@ go build -o letta-switchboard
 ./letta-switchboard config set-api-key sk-your-letta-key
 ```
 
-### 2. Send Your First Message
+**Send messages with natural language:**
 
 ```bash
 # Send immediately
@@ -30,13 +84,13 @@ letta-switchboard send \
   --agent-id agent-xxx \
   --message "Hello from Switchboard!"
 
-# Send later
+# Send later (natural language!)
 letta-switchboard send \
   --agent-id agent-xxx \
   --message "Reminder to check in" \
   --execute-at "tomorrow at 9am"
 
-# Create recurring schedule
+# Create recurring schedule (plain English!)
 letta-switchboard recurring create \
   --agent-id agent-xxx \
   --message "Daily standup" \
