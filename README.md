@@ -5,13 +5,26 @@
 Send messages to your Letta agents immediately or scheduled for later. Supports natural language scheduling ("in 5 minutes", "every weekday at 9am") and secure cross-agent communication.
 
 🌐 **Hosted Service:** `https://letta--switchboard-api.modal.run`  
+🎛️ **Web Dashboard:** [`/dashboard`](https://letta--switchboard-api.modal.run/dashboard)  
 💻 **CLI:** [`letta-switchboard`](cli/)  
 🔒 **Security:** End-to-end encryption, API key isolation  
 📖 **Docs:** [CLI Guide](cli/README.md) | [API Reference](#api-usage)
 
 ## Quick Start
 
-### Option 1: Using cURL (No Installation Required)
+### Option 1: Web Dashboard (Easiest)
+
+Visit the dashboard in your browser: **[https://letta--switchboard-api.modal.run/dashboard](https://letta--switchboard-api.modal.run/dashboard)**
+
+1. Enter your Letta API key
+2. View all your schedules
+3. Create new schedules with a simple form
+4. View execution results and errors
+5. Delete schedules with one click
+
+No installation required - just visit the URL!
+
+### Option 2: Using cURL (No Installation Required)
 
 Send a message right now with just cURL:
 
@@ -65,7 +78,7 @@ curl https://letta--switchboard-api.modal.run/results \
 
 **Pro tip:** Use the CLI for natural language scheduling - it's much easier than writing ISO timestamps and cron expressions!
 
-### Option 2: Using the CLI (Recommended)
+### Option 3: Using the CLI (Advanced)
 
 The CLI makes natural language scheduling much easier:
 

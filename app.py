@@ -37,6 +37,7 @@ image = (
     .pip_install_from_requirements("requirements.txt")
     .env({"LETTA_SWITCHBOARD_DEV_MODE": dev_mode_enabled})  # Must come before add_local_*
     .add_local_python_source("models", "scheduler", "letta_executor", "crypto_utils")
+    .add_local_file("dashboard.html", "/root/dashboard.html")
 )
 
 volume = modal.Volume.from_name("letta-switchboard-volume", create_if_missing=True)
@@ -419,6 +420,7 @@ go build -o letta-switchboard
             </div>
             
             <h2>Documentation & Support</h2>
+            <p>🎛️ <a href="/dashboard"><strong>Web Dashboard</strong></a> - Manage your schedules in your browser</p>
             <p>📖 Full documentation: <a href="https://github.com/cpfiffer/letta-switchboard">github.com/cpfiffer/letta-switchboard</a></p>
             <p>🐛 Issues & support: <a href="https://github.com/cpfiffer/letta-switchboard/issues">GitHub Issues</a></p>
             <p>💬 API response: <a href="/?json">View as JSON</a></p>
@@ -428,6 +430,17 @@ go build -o letta-switchboard
         return HTMLResponse(content=html_content)
     
     return info
+
+
+@web_app.get("/dashboard")
+async def dashboard():
+    """Dashboard UI for managing schedules."""
+    try:
+        with open("/root/dashboard.html", "r") as f:
+            html_content = f.read()
+        return HTMLResponse(content=html_content)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Dashboard not found")
 
 
 @web_app.post("/schedules/recurring")
