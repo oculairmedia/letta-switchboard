@@ -301,8 +301,8 @@ async def root(request: Request):
                     background: #f5f5dc;
                     margin: 0;
                     padding: 15px;
-                    line-height: 1.4;
-                    font-weight: 600;
+                    line-height: 1.5;
+                    font-weight: normal;
                 }
                 .container {
                     max-width: 900px;
@@ -316,9 +316,9 @@ async def root(request: Request):
                     margin-bottom: 8px;
                     font-size: 24px;
                     letter-spacing: 3px;
-                    font-weight: 900;
+                    font-weight: bold;
                     text-transform: uppercase;
-                    border-bottom: 3px solid #000;
+                    border-bottom: 2px solid #000;
                     padding-bottom: 8px;
                 }
                 h2 {
@@ -326,13 +326,13 @@ async def root(request: Request):
                     margin: 20px 0 10px;
                     font-size: 16px;
                     letter-spacing: 2px;
-                    font-weight: 900;
+                    font-weight: bold;
                     text-transform: uppercase;
-                    border-bottom: 3px solid #000;
+                    border-bottom: 2px solid #000;
                     padding-bottom: 3px;
                 }
                 .info-box {
-                    border: 3px solid #000;
+                    border: 2px solid #000;
                     padding: 12px;
                     margin: 15px 0;
                     background: #fafafa;
@@ -342,7 +342,7 @@ async def root(request: Request):
                     font-size: 13px;
                     line-height: 1.6;
                     margin: 0;
-                    font-weight: 700;
+                    font-weight: normal;
                 }
                 .feature-list {
                     list-style: none;
@@ -351,18 +351,18 @@ async def root(request: Request):
                 }
                 .feature-list li {
                     padding: 4px 0;
-                    font-weight: 600;
+                    font-weight: normal;
                 }
                 .feature-list li:before {
                     content: "▪ ";
                     color: #000;
-                    font-weight: 900;
+                    font-weight: bold;
                 }
                 code {
                     background: #f0f0f0;
                     padding: 2px 6px;
                     border: 1px solid #000;
-                    font-weight: 700;
+                    font-weight: normal;
                 }
                 pre {
                     background: #fafafa;
@@ -370,19 +370,19 @@ async def root(request: Request):
                     padding: 12px;
                     overflow-x: auto;
                     margin: 10px 0;
-                    font-weight: 600;
+                    font-weight: normal;
                 }
                 .endpoint {
                     background: #fafafa;
                     padding: 8px 12px;
                     margin: 6px 0;
                     border: 2px solid #000;
-                    font-weight: 700;
+                    font-weight: normal;
                 }
                 a {
                     color: #000;
                     text-decoration: underline;
-                    font-weight: 900;
+                    font-weight: bold;
                 }
                 a:hover {
                     background: #000;
@@ -390,10 +390,10 @@ async def root(request: Request):
                 }
                 .note {
                     background: #fafafa;
-                    border: 3px solid #000;
+                    border: 2px solid #000;
                     padding: 12px;
                     margin: 15px 0;
-                    font-weight: 700;
+                    font-weight: normal;
                 }
             </style>
         </head>
@@ -418,7 +418,7 @@ HOSTING:  FREE SERVERLESS DEPLOYMENT</pre>
             <h2>QUICK START</h2>
             
             <div class="example">
-                <p style="font-weight:900;margin:10px 0 6px 0;">SEND ONE-TIME MESSAGE:</p>
+                <p style="font-weight:bold;margin:10px 0 6px 0;">SEND ONE-TIME MESSAGE:</p>
                 <pre>curl -X POST https://letta--switchboard-api.modal.run/schedules/one-time \\
   -H 'Authorization: Bearer YOUR_LETTA_API_KEY' \\
   -H 'Content-Type: application/json' \\
@@ -430,7 +430,7 @@ HOSTING:  FREE SERVERLESS DEPLOYMENT</pre>
             </div>
             
             <div class="example">
-                <p style="font-weight:900;margin:10px 0 6px 0;">CREATE RECURRING SCHEDULE:</p>
+                <p style="font-weight:bold;margin:10px 0 6px 0;">CREATE RECURRING SCHEDULE:</p>
                 <pre>curl -X POST https://letta--switchboard-api.modal.run/schedules/recurring \\
   -H 'Authorization: Bearer YOUR_LETTA_API_KEY' \\
   -H 'Content-Type: application/json' \\
@@ -442,10 +442,10 @@ HOSTING:  FREE SERVERLESS DEPLOYMENT</pre>
             </div>
             
             <h2>CLI TOOL</h2>
-            <p style="margin:8px 0;font-weight:700;">NATURAL LANGUAGE SCHEDULING SUPPORT</p>
+            <p style="margin:8px 0;">NATURAL LANGUAGE SCHEDULING SUPPORT</p>
             
             <div class="example">
-                <p style="font-weight:900;margin:10px 0 6px 0;">INSTALLATION:</p>
+                <p style="font-weight:bold;margin:10px 0 6px 0;">INSTALLATION:</p>
                 <pre>git clone https://github.com/cpfiffer/letta-switchboard.git
 cd letta-switchboard/cli
 go build -o letta-switchboard
@@ -453,7 +453,7 @@ go build -o letta-switchboard
             </div>
             
             <div class="example">
-                <p style="font-weight:900;margin:10px 0 6px 0;">USAGE:</p>
+                <p style="font-weight:bold;margin:10px 0 6px 0;">USAGE:</p>
                 <pre># Send immediately
 ./letta-switchboard send --agent-id agent-xxx --message "Hello!"
 
