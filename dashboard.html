@@ -8,74 +8,78 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Courier New', 'Consolas', monospace;
-            background: #0a0a0a;
-            color: #00ff00;
+            background: #f5f5dc;
+            color: #000;
             padding: 20px;
-            line-height: 1.4;
+            line-height: 1.6;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
         h1 { 
-            color: #00ff00;
-            margin-bottom: 20px;
-            font-size: 24px;
-            letter-spacing: 2px;
-            border-bottom: 2px solid #00ff00;
-            padding-bottom: 10px;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 18px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
         h2 { 
-            color: #00ff00;
+            color: #000;
             margin: 30px 0 15px;
-            font-size: 18px;
-            letter-spacing: 1px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
             text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
         }
         
         /* API Key Section */
         #api-key-section {
-            background: #000;
-            border: 2px solid #00ff00;
+            background: #fafafa;
+            border: 2px solid #000;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         #api-key-section input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #00ff00;
-            background: #0a0a0a;
-            color: #00ff00;
+            border: 2px solid #666;
+            background: white;
+            color: #000;
             font-family: 'Courier New', monospace;
             font-size: 14px;
         }
         #api-key-section input:focus {
             outline: none;
-            border-color: #00ffff;
-            box-shadow: 0 0 5px #00ff00;
+            border-color: #000;
+            box-shadow: none;
         }
         
         /* Buttons */
         button {
-            background: #000;
-            color: #00ff00;
-            border: 2px solid #00ff00;
+            background: white;
+            color: #000;
+            border: 2px solid #000;
             padding: 8px 16px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-family: 'Courier New', monospace;
             margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: bold;
         }
         button:hover { 
-            background: #00ff00;
-            color: #000;
+            background: #000;
+            color: white;
         }
         button.danger { 
-            border-color: #ff0000;
-            color: #ff0000;
+            border-color: #000;
+            color: #000;
         }
         button.danger:hover {
-            background: #ff0000;
-            color: #000;
+            background: #000;
+            color: white;
         }
         
         /* Tabs */
@@ -83,30 +87,33 @@
             display: flex;
             gap: 2px;
             margin-bottom: 0;
-            border-bottom: 2px solid #00ff00;
+            border-bottom: 3px solid #000;
         }
         .tab {
             padding: 10px 20px;
-            background: #000;
-            color: #00ff00;
-            border: 2px solid #00ff00;
+            background: #e8e8e8;
+            color: #000;
+            border: 2px solid #000;
             border-bottom: none;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: bold;
             font-family: 'Courier New', monospace;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 12px;
         }
-        .tab:hover { background: #001a00; }
+        .tab:hover { background: #d0d0d0; }
         .tab.active { 
-            background: #003300;
-            color: #00ffff;
+            background: white;
+            color: #000;
+            border-bottom: 3px solid white;
+            margin-bottom: -3px;
         }
         
         /* Content */
         .content {
-            background: #000;
-            border: 2px solid #00ff00;
+            background: white;
+            border: 2px solid #000;
             border-top: none;
             padding: 20px;
             display: none;
@@ -118,91 +125,91 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            border: 1px solid #00ff00;
+            border: 2px solid #000;
         }
         th, td {
-            padding: 8px 12px;
+            padding: 10px 12px;
             text-align: left;
-            border-bottom: 1px solid #004400;
-            border-right: 1px solid #004400;
+            border: 1px solid #000;
         }
         th { 
-            background: #001a00;
-            font-weight: 600;
-            color: #00ffff;
+            background: #f0f0f0;
+            font-weight: bold;
+            color: #000;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1px;
         }
-        tr:hover { background: #001100; }
-        td:last-child, th:last-child { border-right: none; }
+        tr:hover { background: #fafafa; }
+        td { font-size: 13px; }
         
         /* Forms */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #00ffff;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #000;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1px;
         }
         input[type="text"], input[type="datetime-local"], textarea, select {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #00ff00;
-            background: #0a0a0a;
-            color: #00ff00;
+            padding: 10px;
+            border: 2px solid #666;
+            background: white;
+            color: #000;
             font-family: 'Courier New', monospace;
             font-size: 14px;
         }
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #00ffff;
-            box-shadow: 0 0 5px #00ff00;
+            border-color: #000;
+            box-shadow: none;
         }
         textarea { min-height: 80px; }
-        small { color: #00aa00; font-size: 11px; }
+        small { color: #666; font-size: 11px; }
         
         /* Status badges */
         .badge {
-            padding: 4px 8px;
-            border: 1px solid;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 4px 10px;
+            border: 2px solid;
+            font-size: 11px;
+            font-weight: bold;
             font-family: 'Courier New', monospace;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .badge.success { 
-            border-color: #00ff00;
-            color: #00ff00;
-            background: #003300;
+            border-color: #000;
+            color: #000;
+            background: white;
         }
         .badge.failed { 
-            border-color: #ff0000;
-            color: #ff0000;
-            background: #330000;
+            border-color: #000;
+            color: white;
+            background: #000;
         }
         
         .hidden { display: none; }
-        .error { color: #ff0000; margin-top: 10px; font-weight: bold; }
-        .empty { text-align: center; padding: 40px; color: #00aa00; }
+        .error { color: #000; margin-top: 10px; font-weight: bold; }
+        .empty { text-align: center; padding: 40px; color: #666; }
         
         /* Loading spinner */
         .loading {
             text-align: center;
             padding: 40px;
-            color: #00ff00;
+            color: #000;
         }
         .spinner {
             display: inline-block;
             width: 40px;
             height: 40px;
-            border: 4px solid #003300;
-            border-top-color: #00ff00;
+            border: 4px solid #e0e0e0;
+            border-top-color: #000;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-bottom: 10px;
@@ -219,31 +226,36 @@
 </head>
 <body>
     <div class="container">
-        <h1>┌─ LETTA SWITCHBOARD ─────────────────────────────────────┐</h1>
-        <pre style="color: #00aa00; margin-bottom: 20px; font-size: 11px;">│ MESSAGE ROUTING TERMINAL v1.0.0                         │
-│ STATUS: <span class="blink">●</span> ONLINE                                         │
-└─────────────────────────────────────────────────────────┘</pre>
+        <h1>LETTA SWITCHBOARD — MESSAGE ROUTING SERVICE</h1>
+        <div style="border: 2px solid #000; padding: 10px; margin-bottom: 30px; background: #fafafa;">
+            <div style="font-size: 11px; line-height: 1.8;">
+                <strong>SYSTEM:</strong> MESSAGE ROUTING TERMINAL<br>
+                <strong>VERSION:</strong> 1.0.0<br>
+                <strong>STATUS:</strong> OPERATIONAL<br>
+                <strong>PROTOCOL:</strong> REST API + SCHEDULED EXECUTION
+            </div>
+        </div>
         
         <!-- API Key Input -->
         <div id="api-key-section">
-            <label for="api-key-input">[ AUTHENTICATION ]</label>
+            <label for="api-key-input">AUTHENTICATION</label>
             <input type="password" id="api-key-input" placeholder="sk-let-...">
-            <button onclick="saveApiKey()">[ SAVE KEY ]</button>
-            <button onclick="clearApiKey()" class="danger">[ CLEAR KEY ]</button>
+            <button onclick="saveApiKey()">SAVE KEY</button>
+            <button onclick="clearApiKey()" class="danger">CLEAR KEY</button>
             <div id="api-key-status"></div>
         </div>
         
         <div id="main-content" class="hidden">
             <!-- Tabs -->
             <div class="tabs">
-                <button class="tab active" onclick="showTab('schedules')">[ SCHEDULES ]</button>
-                <button class="tab" onclick="showTab('create')">[ CREATE NEW ]</button>
-                <button class="tab" onclick="showTab('results')">[ RESULTS ]</button>
+                <button class="tab active" onclick="showTab('schedules')">SCHEDULES</button>
+                <button class="tab" onclick="showTab('create')">CREATE NEW</button>
+                <button class="tab" onclick="showTab('results')">RESULTS</button>
             </div>
             
             <!-- Schedules Tab -->
             <div id="schedules-tab" class="content active">
-                <h2>═══ ONE-TIME SCHEDULES ═══</h2>
+                <h2>ONE-TIME SCHEDULES</h2>
                 <table id="onetime-table">
                     <thead>
                         <tr>
@@ -257,7 +269,7 @@
                     <tbody></tbody>
                 </table>
                 
-                <h2>═══ RECURRING SCHEDULES ═══</h2>
+                <h2>RECURRING SCHEDULES</h2>
                 <table id="recurring-table">
                     <thead>
                         <tr>
@@ -272,15 +284,15 @@
                     <tbody></tbody>
                 </table>
                 
-                <button onclick="loadSchedules()" style="margin-top: 20px;">[ REFRESH ]</button>
+                <button onclick="loadSchedules()" style="margin-top: 20px;">REFRESH</button>
             </div>
             
             <!-- Create Tab -->
             <div id="create-tab" class="content">
-                <h2>═══ CREATE SCHEDULE ═══</h2>
+                <h2>CREATE SCHEDULE</h2>
                 
                 <div class="form-group">
-                    <label>[ SCHEDULE TYPE ]</label>
+                    <label>SCHEDULE TYPE</label>
                     <select id="schedule-type" onchange="toggleScheduleType()">
                         <option value="onetime">One-Time</option>
                         <option value="recurring">Recurring</option>
@@ -288,22 +300,22 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="agent-id">[ AGENT ID ]</label>
+                    <label for="agent-id">AGENT ID</label>
                     <input type="text" id="agent-id" placeholder="agent-xxx">
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">[ MESSAGE ]</label>
+                    <label for="message">MESSAGE</label>
                     <textarea id="message" placeholder="Your message to the agent"></textarea>
                 </div>
                 
                 <div id="onetime-fields">
                     <div class="form-group">
-                        <label for="execute-at">[ EXECUTE AT ]</label>
+                        <label for="execute-at">EXECUTE AT</label>
                         <input type="datetime-local" id="execute-at">
                     </div>
                     <div class="form-group">
-                        <label for="timezone">[ TIMEZONE ]</label>
+                        <label for="timezone">TIMEZONE</label>
                         <select id="timezone">
                             <option value="local" selected>Local Browser Time</option>
                             <option value="UTC">UTC</option>
@@ -321,19 +333,19 @@
                 
                 <div id="recurring-fields" class="hidden">
                     <div class="form-group">
-                        <label for="cron">[ CRON EXPRESSION ]</label>
+                        <label for="cron">CRON EXPRESSION</label>
                         <input type="text" id="cron" placeholder="0 9 * * 1-5">
                         <small style="display:block;margin-top:5px;color:#6b7280;">Examples: "0 9 * * *" (daily at 9am), "*/5 * * * *" (every 5 min)</small>
                     </div>
                 </div>
                 
-                <button onclick="createSchedule()">[ CREATE SCHEDULE ]</button>
+                <button onclick="createSchedule()">CREATE SCHEDULE</button>
                 <div id="create-error" class="error"></div>
             </div>
             
             <!-- Results Tab -->
             <div id="results-tab" class="content">
-                <h2>═══ EXECUTION RESULTS ═══</h2>
+                <h2>EXECUTION RESULTS</h2>
                 <table id="results-table">
                     <thead>
                         <tr>
@@ -349,7 +361,7 @@
                     <tbody></tbody>
                 </table>
                 
-                <button onclick="loadResults()" style="margin-top: 20px;">[ REFRESH ]</button>
+                <button onclick="loadResults()" style="margin-top: 20px;">REFRESH</button>
             </div>
         </div>
     </div>
@@ -369,12 +381,12 @@
         function saveApiKey() {
             API_KEY = document.getElementById('api-key-input').value.trim();
             if (!API_KEY) {
-                alert('[ ✗ ERROR: API KEY REQUIRED ]');
+                alert('ERROR: API KEY REQUIRED');
                 return;
             }
             sessionStorage.setItem('letta_api_key', API_KEY);
             document.getElementById('main-content').classList.remove('hidden');
-            document.getElementById('api-key-status').innerHTML = '<p style="color:#00ff00;margin-top:10px;">[ ✓ API KEY AUTHENTICATED ]</p>';
+            document.getElementById('api-key-status').innerHTML = '<p style="color:#000;margin-top:10px;font-weight:bold;">✓ API KEY AUTHENTICATED</p>';
             loadSchedules();
             loadResults();
         }
@@ -384,7 +396,7 @@
             API_KEY = '';
             document.getElementById('api-key-input').value = '';
             document.getElementById('main-content').classList.add('hidden');
-            document.getElementById('api-key-status').innerHTML = '<p style="color:#ff0000;margin-top:10px;">[ ✗ SESSION TERMINATED ]</p>';
+            document.getElementById('api-key-status').innerHTML = '<p style="color:#000;margin-top:10px;font-weight:bold;">✗ SESSION TERMINATED</p>';
         }
         
         function showTab(tab) {
@@ -425,7 +437,7 @@
                         <td>${s.agent_id}</td>
                         <td>${new Date(s.execute_at).toLocaleString()}</td>
                         <td>${truncate(s.message, 50)}</td>
-                        <td><button class="danger" onclick="deleteSchedule('one-time', '${s.id}')">[ DEL ]</button></td>
+                        <td><button class="danger" onclick="deleteSchedule('one-time', '${s.id}')">DEL</button></td>
                     </tr>
                 `).join('') : '<tr><td colspan="5" class="empty">No one-time schedules</td></tr>';
                 
@@ -438,11 +450,11 @@
                         <td>${s.cron}</td>
                         <td>${truncate(s.message, 50)}</td>
                         <td>${s.last_run ? new Date(s.last_run).toLocaleString() : 'Never'}</td>
-                        <td><button class="danger" onclick="deleteSchedule('recurring', '${s.id}')">[ DEL ]</button></td>
+                        <td><button class="danger" onclick="deleteSchedule('recurring', '${s.id}')">DEL</button></td>
                     </tr>
                 `).join('') : '<tr><td colspan="6" class="empty">No recurring schedules</td></tr>';
             } catch (error) {
-                alert('[ ✗ ERROR LOADING SCHEDULES: ' + error.message.toUpperCase() + ' ]');
+                alert('ERROR LOADING SCHEDULES: ' + error.message);
             }
         }
         
@@ -469,7 +481,7 @@
                     </tr>
                 `).join('') : '<tr><td colspan="7" class="empty">No execution results</td></tr>';
             } catch (error) {
-                alert('[ ✗ ERROR LOADING RESULTS: ' + error.message.toUpperCase() + ' ]');
+                alert('ERROR LOADING RESULTS: ' + error.message);
             }
         }
         
@@ -543,7 +555,7 @@
                     throw new Error(error.detail || 'Failed to create schedule');
                 }
                 
-                alert('[ ✓ SCHEDULE CREATED SUCCESSFULLY ]');
+                alert('SCHEDULE CREATED SUCCESSFULLY');
                 document.getElementById('agent-id').value = '';
                 document.getElementById('message').value = '';
                 document.getElementById('execute-at').value = '';
@@ -557,7 +569,7 @@
         }
         
         async function deleteSchedule(type, id) {
-            if (!confirm('[ CONFIRM: DELETE SCHEDULE? ]')) return;
+            if (!confirm('CONFIRM: Delete this schedule?')) return;
             
             try {
                 const response = await fetch(`${API_BASE}/schedules/${type}/${id}`, {
@@ -567,10 +579,10 @@
                 
                 if (!response.ok) throw new Error('Failed to delete');
                 
-                alert('[ ✓ SCHEDULE TERMINATED ]');
+                alert('SCHEDULE DELETED');
                 loadSchedules();
             } catch (error) {
-                alert('[ ✗ ERROR DELETING SCHEDULE: ' + error.message.toUpperCase() + ' ]');
+                alert('ERROR DELETING SCHEDULE: ' + error.message);
             }
         }
         
