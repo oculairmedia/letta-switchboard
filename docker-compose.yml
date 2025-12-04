@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  letta-switchboard:
+    build: .
+    container_name: letta-switchboard
+    restart: unless-stopped
+    ports:
+      - "8086:8000"
+    environment:
+      # Encryption key for schedule data (generate with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())")
+      - LETTA_SWITCHBOARD_ENCRYPTION_KEY=${LETTA_SWITCHBOARD_ENCRYPTION_KEY}
+      # Data directory inside container
+      - LETTA_SWITCHBOARD_DATA_DIR=/data
+      # Base URL for the service (used in responses)
+      - LETTA_SWITCHBOARD_BASE_URL=${LETTA_SWITCHBOARD_BASE_URL:-http://localhost:8085}
+      # Letta API base URL (if using self-hosted Letta)
+      - LETTA_BASE_URL=${LETTA_BASE_URL:-https://api.letta.com}
+      # Dev mode (disable encryption for debugging)
+      - LETTA_SWITCHBOARD_DEV_MODE=${LETTA_SWITCHBOARD_DEV_MODE:-false}
+    volumes:
+      - letta-switchboard-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - letta-network
+
+volumes:
+  letta-switchboard-data:
+    driver: local
+
+networks:
+  letta-network:
+    external: true
